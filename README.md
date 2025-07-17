@@ -1,7 +1,5 @@
 # Satellite Image Segmentation using Google Search Engine
 
-![Satellite Image Segmentation Banner](https://i.imgur.com/F2yR7fS.jpg)
-
 ## Overview
 
 This project demonstrates how to leverage Google Search Engine to obtain satellite imagery and then apply advanced segmentation techniques to extract meaningful information from these images. The segmentation process identifies and classifies different elements within satellite imagery, such as buildings, roads, vegetation, and water bodies.
@@ -70,7 +68,22 @@ jupyter notebook satellite_image_segmentation.ipynb
 
 The data collection process utilizes Google Search Engine to retrieve high-quality satellite imagery:
 
-![Data Collection Workflow](https://i.imgur.com/OvZpXq2.png)
+```
+┌─────────────────────────┐       ┌─────────────────────┐       ┌─────────────────────┐
+│                         │       │                     │       │                     │
+│  Google Search Engine   ├──────►│  Image Filtering    ├──────►│  Metadata           │
+│  Query Processing       │       │  & Selection        │       │  Extraction         │
+│                         │       │                     │       │                     │
+└─────────────────────────┘       └─────────────────────┘       └──────────┬──────────┘
+                                                                           │
+                                                                           ▼
+┌─────────────────────────┐       ┌─────────────────────┐       ┌─────────────────────┐
+│                         │       │                     │       │                     │
+│  Dataset Organization   │◄──────┤  Geolocation        │◄──────┤  Image Quality      │
+│  & Storage              │       │  Verification       │       │  Assessment         │
+│                         │       │                     │       │                     │
+└─────────────────────────┘       └─────────────────────┘       └─────────────────────┘
+```
 
 Key aspects of the data collection process:
 - Automated queries to Google Image Search with specific keywords
@@ -82,7 +95,14 @@ Key aspects of the data collection process:
 
 Our segmentation pipeline consists of several stages:
 
-![Segmentation Pipeline](https://i.imgur.com/LsH5E9X.png)
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │     │                 │
+│  Preprocessing  ├────►│ Feature         ├────►│ Model           ├────►│ Post-           │
+│                 │     │ Extraction      │     │ Application     │     │ processing      │
+│                 │     │                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘     └─────────────────┘
+```
 
 1. **Image Preprocessing**:
    - Noise reduction
@@ -106,22 +126,45 @@ Our segmentation pipeline consists of several stages:
 
 ## Results
 
-Below are sample results from our segmentation model:
+### Sample Results
 
-| Original Image | Segmentation Result |
-|----------------|---------------------|
-| ![Original Satellite Image 1](https://i.imgur.com/bDq5sXz.jpg) | ![Segmented Image 1](https://i.imgur.com/RfL8ZQy.jpg) |
-| ![Original Satellite Image 2](https://i.imgur.com/cNd59lM.jpg) | ![Segmented Image 2](https://i.imgur.com/YtGZ4vP.jpg) |
+Place your result images in the `results` directory and reference them like:
+
+```
+Original Image               |  Segmented Result
+:-------------------------:|:-------------------------:
+![](./images/original_1.jpg)  |  ![](./images/segmented_1.jpg)
+![](./images/original_2.jpg)  |  ![](./images/segmented_2.jpg)
+```
 
 ### Performance Metrics
 
 Our segmentation model achieves the following performance metrics:
 
-- **Intersection over Union (IoU)**: 0.85
-- **Pixel Accuracy**: 92.7%
-- **F1 Score**: 0.89
+| Metric | Value |
+|--------|-------|
+| Intersection over Union (IoU) | 0.85 |
+| Pixel Accuracy | 92.7% |
+| F1 Score | 0.89 |
 
-![Performance Visualization](https://i.imgur.com/3XgWj8p.png)
+```
+Performance Over Time
+┌────────────┐
+│            │                                      ┌───
+│            │                                   ┌──┘
+│            │                               ┌───┘
+│     A      │                          ┌────┘
+│     c      │                      ┌───┘
+│     c      │                   ┌──┘
+│     u      │                ┌──┘
+│     r      │             ┌──┘
+│     a      │          ┌──┘
+│     c      │       ┌──┘
+│     y      │    ┌──┘
+│            │ ┌─┘
+└────────────┘─┴──────────────────────────────────────▶
+              Training Epochs
+```
 
 ## Contributing
 
